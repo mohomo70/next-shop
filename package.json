@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@heroicons/react": "^1.0.6",
-    "@types/react": "^18.0.25"
+    "@types/react": "^18.0.25",
+    "js-cookie": "^3.0.1"
   }
 }
