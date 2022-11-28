@@ -8,6 +8,7 @@ import { Store } from '../../utils/Store'
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store)
+  const router = useRouter()
   const { query } = useRouter()
   const { slug } = query
   const product = data.products.find((x) => x.slug === slug)
@@ -16,7 +17,7 @@ export default function ProductScreen() {
   }
 
   const addToCartHandler = () => {
-    const existItem = state.cart.cartItem.find((x) => x.slug === product.slug)
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
     const quantity = existItem ? existItem.quantity + 1 : 1
 
     if (product.countInStock < quantity) {
@@ -24,6 +25,7 @@ export default function ProductScreen() {
       return
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+    router.push('/cart')
   }
 
   return (
@@ -66,7 +68,7 @@ export default function ProductScreen() {
             </div>
             <button
               className='primary-button w-full'
-              ocClick={addToCartHandler}
+              onClick={addToCartHandler}
             >
               Add to cart
             </button>

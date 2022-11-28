@@ -22,6 +22,7 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
+    "@heroicons/react": "^1.0.6",
     "@types/react": "^18.0.25"
   }
 }
