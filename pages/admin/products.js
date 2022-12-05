@@ -104,7 +104,7 @@ export default function AdminProdcutsScreen() {
               <Link href='/admin/orders'>Orders</Link>
             </li>
             <li>
-              <Link href='/admin/products'>
+              <Link href='/admin/products' legacyBehavior>
                 <a className='font-bold'>Products</a>
               </Link>
             </li>

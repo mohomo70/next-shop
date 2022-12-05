@@ -44,7 +44,7 @@ export default function AdminOrderScreen() {
               <Link href='/admin/dashboard'>Dashboard</Link>
             </li>
             <li>
-              <Link href='/admin/orders'>
+              <Link href='/admin/orders' legacyBehavior>
                 <a className='font-bold'>Orders</a>
               </Link>
             </li>
@@ -99,7 +99,11 @@ export default function AdminOrderScreen() {
                           : 'not delivered'}
                       </td>
                       <td className='p-5'>
-                        <Link href={`/order/${order._id}`} passHref>
+                        <Link
+                          legacyBehavior
+                          href={`/order/${order._id}`}
+                          passHref
+                        >
                           <a>Details</a>
                         </Link>
                       </td>

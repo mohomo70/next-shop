@@ -8,8 +8,10 @@ import { Menu } from '@headlessui/react'
 import 'react-toastify/dist/ReactToastify.css'
 import { Store } from '../utils/Store'
 import DropdownLink from './DropdownLink'
+import { FormattedMessage, useIntl } from 'react-intl'
 
-export default function Layout({ title, children }) {
+export default function Layout({ title, children, dir }) {
+  const intl = useIntl()
   const { status, data: session } = useSession()
   const { state, dispatch } = useContext(Store)
   const { cart } = state
@@ -37,8 +39,17 @@ export default function Layout({ title, children }) {
         <header>
           <nav className='flex h-12 items-center px-4 justify-between shadow-md'>
             <Link legacyBehavior href='/'>
-              <a className='text-lg font-bold'>Shop</a>
+              <a className='text-lg font-bold'>
+                <FormattedMessage id='page.home.head.title' />
+              </a>
             </Link>
+            {/* <div>
+              {[...locales].sort().map((locale) => (
+                <Link key={locale} href='/' locale={locale}>
+                  {locale}
+                </Link>
+              ))}
+            </div> */}
             <div>
               <Link legacyBehavior href='/cart'>
                 <a className='p-2'>
@@ -100,7 +111,9 @@ export default function Layout({ title, children }) {
             </div>
           </nav>
         </header>
-        <main className='container m-auto mt-4 px-4'>{children}</main>
+        <main className='container m-auto mt-4 px-4' dir={dir}>
+          {children}
+        </main>
         <footer className='flex h-10 justify-center items-center shadow-inner'>
           <p>Copyright @ 2022 Shop</p>
         </footer>
