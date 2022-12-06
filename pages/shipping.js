@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import { Store } from '../utils/Store'
 import { useRouter } from 'next/router'
 
-export default function ShippingScreen() {
+export default function ShippingScreen({ dir }) {
   const {
     handleSubmit,
     register,
@@ -49,21 +49,21 @@ export default function ShippingScreen() {
   }
 
   return (
-    <Layout title='Shipping Address'>
+    <Layout title='Shipping Address' dir={dir}>
       <CheckoutWizard activeStep={1} />
       <form
         className='mx-auto max-w-screen-md'
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className='mb-4 text-xl'>Shipping Address</h1>
+        <h1 className='mb-4 text-xl'>آدرس دریافت محصول</h1>
         <div className='mb-4'>
-          <label htmlFor='fullName'>Full Name</label>
+          <label htmlFor='fullName'>نام و نام خانوادگی</label>
           <input
             className='w-full'
             id='fullName'
             autoFocus
             {...register('fullName', {
-              required: 'Please enter full name',
+              required: 'لطفا نام خود را وارد کنید',
             })}
           />
           {errors.fullName && (
@@ -71,12 +71,12 @@ export default function ShippingScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='address'>Address</label>
+          <label htmlFor='address'>نشانی</label>
           <input
             className='w-full'
             id='address'
             {...register('address', {
-              required: 'Please enter address',
+              required: 'لطفا نشانی را وارد کنید',
               minLength: { value: 3, message: 'Address is more than 2 chars' },
             })}
           />
@@ -85,12 +85,12 @@ export default function ShippingScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='city'>City</label>
+          <label htmlFor='city'>شهر</label>
           <input
             className='w-full'
             id='city'
             {...register('city', {
-              required: 'Please enter city',
+              required: 'شهر را وارد کنید',
             })}
           />
           {errors.city && (
@@ -98,12 +98,12 @@ export default function ShippingScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='postalCode'>Postal Code</label>
+          <label htmlFor='postalCode'>کد پستی</label>
           <input
             className='w-full'
             id='postalCode'
             {...register('postalCode', {
-              required: 'Please enter postal code',
+              required: 'لطفا کد پستی را وارد کنید',
             })}
           />
           {errors.postalCode && (
@@ -111,12 +111,12 @@ export default function ShippingScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='country'>Country</label>
+          <label htmlFor='country'>کشور</label>
           <input
             className='w-full'
             id='country'
             {...register('country', {
-              required: 'Please enter country',
+              required: 'لطفا کشور را وارد کنید',
             })}
           />
           {errors.country && (
@@ -124,7 +124,7 @@ export default function ShippingScreen() {
           )}
         </div>
         <div className='mb-4 flex justify-between'>
-          <button className='primary-button'>Next</button>
+          <button className='primary-button'>بعدی</button>
         </div>
       </form>
     </Layout>

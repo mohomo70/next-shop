@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-function CartScreen() {
+function CartScreen({ dir }) {
   const router = useRouter()
   const { state, dispatch } = useContext(Store)
   const {
@@ -22,17 +22,17 @@ function CartScreen() {
     const quantity = Number(qty)
     const { data } = await axios.get(`/api/products/${item._id}`)
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is ou tof stock')
+      return toast.error('متاسفانه محصول موجود نمی باشد')
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
-    toast.success('Product updated in the cart')
+    toast.success('محصول به سبد خرید اضافه شد')
   }
   return (
-    <Layout title='Shopping Cart'>
-      <h1 className='mb-4 text-xl'>Shopping Cart</h1>
+    <Layout title='Shopping Cart' dir={dir}>
+      <h1 className='mb-4 text-xl'>سبد خرید</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cart is empty. <Link href='/'>Go shopping</Link>
+          سبد خرید خالی است. <Link href='/'>بازگشت</Link>
         </div>
       ) : (
         <div className='grid md:grid-cols-4 md:gap-5'>
@@ -40,10 +40,10 @@ function CartScreen() {
             <table className='min-w-full '>
               <thead className='border-b'>
                 <tr>
-                  <th className='p-5 text-left'>Item</th>
-                  <th className='p-5 text-right'>Quantity</th>
-                  <th className='p-5 text-right'>Price</th>
-                  <th className='p-5'>Action</th>
+                  <th className='p-5 text-right'>مورد</th>
+                  <th className='p-5 text-right'>تعداد </th>
+                  <th className='p-5 text-right'>قیمت</th>
+                  <th className='p-5'>اقدامات</th>
                 </tr>
               </thead>
               <tbody>
@@ -88,11 +88,11 @@ function CartScreen() {
               </tbody>
             </table>
           </div>
-          <div className='card p-5'>
+          <div className='card p-5 mt-16'>
             <ul>
               <li>
                 <div className='pb-3 text-xl'>
-                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
+                  مجموع ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : ريال
                   {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                 </div>
               </li>
@@ -101,7 +101,7 @@ function CartScreen() {
                   onClick={() => router.push('login?redirect=/shipping')}
                   className='primary-button w-full'
                 >
-                  Check Out
+                  مرحله بعد
                 </button>
               </li>
             </ul>

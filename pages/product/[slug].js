@@ -10,7 +10,7 @@ import Product from '../../models/Product'
 import db from '../../utils/db'
 
 export default function ProductScreen(props) {
-  const { product } = props
+  const { product, dir } = props
   const { state, dispatch } = useContext(Store)
   const router = useRouter()
 
@@ -31,14 +31,14 @@ export default function ProductScreen(props) {
   }
 
   return (
-    <Layout title={product.name}>
+    <Layout title={product.name} dir={dir}>
       <div className='py-2'>
-        <Link href='/'>back to products</Link>
+        <Link href='/'>بازگشت به محصولات</Link>
       </div>
       <div className='grid md:grid-cols-4 md:gap-3'>
         <div className='md:col-span-2'>
           <Image
-            src={product.image}
+            // src={product.image}
             alt={product.name}
             width={640}
             height={640}
@@ -50,29 +50,31 @@ export default function ProductScreen(props) {
             <li>
               <h1 className='text-lg'>{product.name}</h1>
             </li>
-            <li>Category: {product.category}</li>
-            <li>Brand: {product.brand}</li>
+            <li>دسته بندی: {product.category}</li>
+            <li>برند: {product.brand}</li>
             <li>
               {product.rating} of {product.numReviews} reviews
             </li>
-            <li>Description: {product.description}</li>
+            <li>توضیحات: {product.description}</li>
           </ul>
         </div>
         <div>
           <div className='card p-5'>
             <div className='mb-2 flex justify-between'>
-              <div>Price</div>
-              <div>${product.price}</div>
+              <div>قیمت</div>
+              <div>{product.price}ريال</div>
             </div>
             <div className='mb-2 flex justify-between'>
-              <div>Status</div>
-              <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
+              <div>وضعیت</div>
+              <div>
+                {product.countInStock > 0 ? 'موجود در انبار' : 'موجود نمی‌باشد'}
+              </div>
             </div>
             <button
               className='primary-button w-full'
               onClick={addToCartHandler}
             >
-              Add to cart
+              اضافه کردن به سید خرید
             </button>
           </div>
         </div>

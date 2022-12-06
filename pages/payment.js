@@ -6,7 +6,7 @@ import CheckoutWizard from '../components/CheckoutWizard'
 import Layout from '../components/Layout'
 import { Store } from '../utils/Store'
 
-export default function PaymentScreen() {
+export default function PaymentScreen({ dir }) {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
 
   const { state, dispatch } = useContext(Store)
@@ -39,10 +39,10 @@ export default function PaymentScreen() {
   }, [paymentMethod, router, shippingAddress.address])
 
   return (
-    <Layout title='Payment Method'>
+    <Layout title='Payment Method' dir={dir}>
       <CheckoutWizard activeStep={2} />
       <form className='mx-auto max-w-screen-md' onSubmit={submitHandler}>
-        <h1 className='mb-4 text-xl'>Payment Method</h1>
+        <h1 className='mb-4 text-xl'>روش پرداخت</h1>
         {['PayPal', 'Stripe', 'CashOnDelivery'].map((payment) => (
           <div key={payment} className='mb-4'>
             <input
@@ -65,9 +65,9 @@ export default function PaymentScreen() {
             type='button'
             className='default-button'
           >
-            Back
+            بازگشت
           </button>
-          <button className='primary-button'>Next</button>
+          <button className='primary-button'>بعدی</button>
         </div>
       </form>
     </Layout>
