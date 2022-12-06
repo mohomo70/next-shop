@@ -28,7 +28,7 @@ export default function Home({ products, featuredProducts, dir }) {
   }
   return (
     <Layout title='Home Page' dir={dir}>
-      <Carousel showThumbs={false} autoPlay>
+      {/* <Carousel showThumbs={false} autoPlay>
         {featuredProducts.map((product) => (
           <div key={product._id}>
             <Link href={`/product/${product.slug}`} passHref legacyBehavior>
@@ -38,7 +38,7 @@ export default function Home({ products, featuredProducts, dir }) {
             </Link>
           </div>
         ))}
-      </Carousel>
+      </Carousel> */}
       <h2 className='h2 my-4'>
         <FormattedMessage id='page.home.main.title' />
       </h2>

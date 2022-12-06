@@ -16,7 +16,7 @@ function reducer(state, action) {
       state
   }
 }
-export default function AdminOrderScreen() {
+export default function AdminOrderScreen({ dir }) {
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
@@ -36,31 +36,31 @@ export default function AdminOrderScreen() {
     fetchData()
   }, [])
   return (
-    <Layout title='Admin Dashboard'>
+    <Layout title='Admin Dashboard' dir={dir}>
       <div className='grid md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
             <li>
-              <Link href='/admin/dashboard'>Dashboard</Link>
+              <Link href='/admin/dashboard'>داشبورد</Link>
             </li>
             <li>
               <Link href='/admin/orders' legacyBehavior>
-                <a className='font-bold'>Orders</a>
+                <a className='font-bold'>سفارشات</a>
               </Link>
             </li>
             <li>
-              <Link href='/admin/products'>Products</Link>
+              <Link href='/admin/products'>محصولات</Link>
             </li>
             <li>
-              <Link href='/admin/users'>Users</Link>
+              <Link href='/admin/users'>کاربران</Link>
             </li>
           </ul>
         </div>
         <div className='overflow-x-auto md:col-span-3'>
-          <h1 className='mb-4 text-xl'>Admin Orders</h1>
+          <h1 className='mb-4 text-xl'>سفارشات ادمین</h1>
 
           {loading ? (
-            <div>Loading...</div>
+            <div>درحال بارگذاری...</div>
           ) : error ? (
             <div className='alert-error'>{error}</div>
           ) : (
@@ -68,13 +68,13 @@ export default function AdminOrderScreen() {
               <table className='min-w-full'>
                 <thead className='border-b'>
                   <tr>
-                    <th className='px-5 text-left'>ID</th>
-                    <th className='p-5 text-left'>USER</th>
-                    <th className='p-5 text-left'>DATE</th>
-                    <th className='p-5 text-left'>TOTAL</th>
-                    <th className='p-5 text-left'>PAID</th>
-                    <th className='p-5 text-left'>DELIVERED</th>
-                    <th className='p-5 text-left'>ACTION</th>
+                    <th className='px-5 text-right'>شماره</th>
+                    <th className='p-5 text-right'>نام کاربر</th>
+                    <th className='p-5 text-right'>تاریخ</th>
+                    <th className='p-5 text-right'>مجموع</th>
+                    <th className='p-5 text-right'>وضعیت پرداخت</th>
+                    <th className='p-5 text-right'>وضعیت ارسال</th>
+                    <th className='p-5 text-right'>اقدامات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -104,7 +104,7 @@ export default function AdminOrderScreen() {
                           href={`/order/${order._id}`}
                           passHref
                         >
-                          <a>Details</a>
+                          <a>جزئیات</a>
                         </Link>
                       </td>
                     </tr>

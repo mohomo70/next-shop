@@ -19,7 +19,7 @@ function reducer(state, action) {
       return state
   }
 }
-export default function AdminProductEditScreen() {
+export default function AdminProductEditScreen({ dir }) {
   const { query } = useRouter()
   const productId = query.id
   const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
@@ -81,7 +81,7 @@ export default function AdminProductEditScreen() {
         description,
       })
       dispatch({ type: 'UPDATE_SUCCESS' })
-      toast.success('Product updated successfully')
+      toast.success('محصول با موفقیت بروزرسانی شد')
       router.push('/admin/products')
     } catch (err) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(err) })
@@ -90,29 +90,29 @@ export default function AdminProductEditScreen() {
   }
 
   return (
-    <Layout title={`Edit Product ${productId}`}>
+    <Layout title={`Edit Product ${productId}`} dir={dir}>
       <div className='grid md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
             <li>
-              <Link href='/admin/dashboard'>Dashboard</Link>
+              <Link href='/admin/dashboard'>داشبورد</Link>
             </li>
             <li>
-              <Link href='/admin/orders'>Orders</Link>
+              <Link href='/admin/orders'>سفارشات</Link>
             </li>
             <li>
               <Link href='/admin/products' legacyBehavior>
-                <a className='font-bold'>Products</a>
+                <a className='font-bold'>محصولات</a>
               </Link>
             </li>
             <li>
-              <Link href='/admin/users'>Users</Link>
+              <Link href='/admin/users'>کاربران</Link>
             </li>
           </ul>
         </div>
         <div className='md:col-span-3'>
           {loading ? (
-            <div>Loading...</div>
+            <div>درحال بارگذاری ...</div>
           ) : error ? (
             <div className='alert-error'>{error}</div>
           ) : (
@@ -120,16 +120,16 @@ export default function AdminProductEditScreen() {
               className='mx-auto max-w-screen-md'
               onSubmit={handleSubmit(submitHandler)}
             >
-              <h1 className='mb-4 text-xl'>{`Edit Product ${productId}`}</h1>
+              <h1 className='mb-4 text-xl'>{`ویرایش محصول با شماره ${productId}`}</h1>
               <div className='mb-4'>
-                <label htmlFor='name'>Name</label>
+                <label htmlFor='name'>عنوان</label>
                 <input
                   type='text'
                   className='w-full'
                   id='name'
                   autoFocus
                   {...register('name', {
-                    required: 'Please enter name',
+                    required: 'لطفا عنوان را وارد کنید',
                   })}
                 />
                 {errors.name && (
@@ -137,13 +137,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='slug'>Slug</label>
+                <label htmlFor='slug'>شماره</label>
                 <input
                   type='text'
                   className='w-full'
                   id='slug'
                   {...register('slug', {
-                    required: 'Please enter slug',
+                    required: 'لطفا شماره را وارد کنید',
                   })}
                 />
                 {errors.slug && (
@@ -151,13 +151,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='price'>Price</label>
+                <label htmlFor='price'>قیمت</label>
                 <input
                   type='text'
                   className='w-full'
                   id='price'
                   {...register('price', {
-                    required: 'Please enter price',
+                    required: 'لطفا قیمت را وارد کنید',
                   })}
                 />
                 {errors.price && (
@@ -165,13 +165,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='image'>image</label>
+                <label htmlFor='image'>عکس</label>
                 <input
                   type='text'
                   className='w-full'
                   id='image'
                   {...register('image', {
-                    required: 'Please enter image',
+                    required: 'لطفا عکس را وارد کنید',
                   })}
                 />
                 {errors.image && (
@@ -179,13 +179,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='category'>category</label>
+                <label htmlFor='category'>دسته‌بندی</label>
                 <input
                   type='text'
                   className='w-full'
                   id='category'
                   {...register('category', {
-                    required: 'Please enter category',
+                    required: 'لطفا دسته بندی را وارد کنید',
                   })}
                 />
                 {errors.category && (
@@ -193,13 +193,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='brand'>brand</label>
+                <label htmlFor='brand'>برند</label>
                 <input
                   type='text'
                   className='w-full'
                   id='brand'
                   {...register('brand', {
-                    required: 'Please enter brand',
+                    required: 'لطفا برند را وارد کنید',
                   })}
                 />
                 {errors.brand && (
@@ -207,13 +207,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='countInStock'>countInStock</label>
+                <label htmlFor='countInStock'>موجود در انبار</label>
                 <input
                   type='text'
                   className='w-full'
                   id='countInStock'
                   {...register('countInStock', {
-                    required: 'Please enter countInStock',
+                    required: 'لطفا تعداد موجود در انبار را وارد کنید',
                   })}
                 />
                 {errors.countInStock && (
@@ -223,13 +223,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className='mb-4'>
-                <label htmlFor='countInStock'>description</label>
+                <label htmlFor='countInStock'>توضیحات</label>
                 <input
                   type='text'
                   className='w-full'
                   id='description'
                   {...register('description', {
-                    required: 'Please enter description',
+                    required: 'لطفا توضیحات را وارد کنید',
                   })}
                 />
                 {errors.description && (
@@ -240,11 +240,11 @@ export default function AdminProductEditScreen() {
               </div>
               <div className='mb-4'>
                 <button disabled={loadingUpdate} className='primary-button'>
-                  {loadingUpdate ? 'Loading' : 'Update'}
+                  {loadingUpdate ? 'درحال بارگذاری' : 'به‌روزرسانی'}
                 </button>
               </div>
               <div className='mb-4'>
-                <Link href={`/admin/products`}>Back</Link>
+                <Link href={`/admin/products`}>بازگشت</Link>
               </div>
             </form>
           )}

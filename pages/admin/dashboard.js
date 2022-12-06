@@ -38,7 +38,7 @@ function reducer(state, action) {
       state
   }
 }
-function AdminDashboardScreen() {
+function AdminDashboardScreen({ dir }) {
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
     summary: { salesData: [] },
@@ -63,64 +63,64 @@ function AdminDashboardScreen() {
     labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
     datasets: [
       {
-        label: 'Sales',
+        label: 'فروش',
         backgroundColor: 'rgba(162, 222, 208, 1)',
         data: summary.salesData.map((x) => x.totalSales),
       },
     ],
   }
   return (
-    <Layout title='Admin Dashboard'>
+    <Layout title='Admin Dashboard' dir={dir}>
       <div className='grid  md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
             <li>
               <Link href='/admin/dashboard' legacyBehavior>
-                <a className='font-bold'>Dashboard</a>
+                <a className='font-bold'>داشبورد</a>
               </Link>
             </li>
             <li>
-              <Link href='/admin/orders'>Orders</Link>
+              <Link href='/admin/orders'>سفارشات</Link>
             </li>
             <li>
-              <Link href='/admin/products'>Products</Link>
+              <Link href='/admin/products'>محصولات</Link>
             </li>
             <li>
-              <Link href='/admin/users'>Users</Link>
+              <Link href='/admin/users'>کاربران</Link>
             </li>
           </ul>
         </div>
         <div className='md:col-span-3'>
-          <h1 className='mb-4 text-xl'>Admin Dashboard</h1>
+          <h1 className='mb-4 text-xl'>داشبورد ادمین</h1>
           {loading ? (
-            <div>Loading...</div>
+            <div>درحال بارگذاری...</div>
           ) : error ? (
             <div className='alert-error'>{error}</div>
           ) : (
             <div>
               <div className='grid grid-cols-1 md:grid-cols-4'>
                 <div className='card m-5 p-5'>
-                  <p className='text-3xl'>${summary.ordersPrice} </p>
-                  <p>Sales</p>
-                  <Link href='/admin/orders'>View sales</Link>
+                  <p className='text-3xl'>{summary.ordersPrice} ريال</p>
+                  <p>فروش</p>
+                  <Link href='/admin/orders'>مشاهده فروش</Link>
                 </div>
                 <div className='card m-5 p-5'>
                   <p className='text-3xl'>{summary.ordersCount} </p>
-                  <p>Orders</p>
-                  <Link href='/admin/orders'>View orders</Link>
+                  <p>سفارشات</p>
+                  <Link href='/admin/orders'>مشاهده سفارشات</Link>
                 </div>
                 <div className='card m-5 p-5'>
                   <p className='text-3xl'>{summary.productsCount} </p>
-                  <p>Products</p>
-                  <Link href='/admin/products'>View products</Link>
+                  <p>محصولات</p>
+                  <Link href='/admin/products'>مشاهده محصولات</Link>
                 </div>
                 <div className='card m-5 p-5'>
                   <p className='text-3xl'>{summary.usersCount} </p>
-                  <p>Users</p>
-                  <Link href='/admin/users'>View users</Link>
+                  <p>کاربران</p>
+                  <Link href='/admin/users'>مشاهده کاربران</Link>
                 </div>
               </div>
-              <h2 className='text-xl'>Sales Report</h2>
+              <h2 className='text-xl'>گزارش فروش</h2>
               <Bar
                 options={{
                   legend: { display: true, position: 'right' },

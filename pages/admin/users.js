@@ -27,7 +27,7 @@ function reducer(state, action) {
   }
 }
 
-function AdminUsersScreen() {
+function AdminUsersScreen({ dir }) {
   const [{ loading, error, users, successDelete, loadingDelete }, dispatch] =
     useReducer(reducer, {
       loading: true,
@@ -53,7 +53,7 @@ function AdminUsersScreen() {
   }, [successDelete])
 
   const deleteHandler = async (userId) => {
-    if (!window.confirm('Are you sure?')) {
+    if (!window.confirm('آیا اطمینان دارید؟')) {
       return
     }
     try {
@@ -68,31 +68,31 @@ function AdminUsersScreen() {
   }
 
   return (
-    <Layout title='Users'>
+    <Layout title='Users' dir={dir}>
       <div className='grid md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
             <li>
-              <Link href='/admin/dashboard'>Dashboard</Link>
+              <Link href='/admin/dashboard'>داشبورد</Link>
             </li>
             <li>
-              <Link href='/admin/orders'>Orders</Link>
+              <Link href='/admin/orders'>سفارشات</Link>
             </li>
             <li>
-              <Link href='/admin/products'>Products</Link>
+              <Link href='/admin/products'>محصولات</Link>
             </li>
             <li>
               <Link href='/admin/users' legacyBehavior>
-                <a className='font-bold'>Users</a>
+                <a className='font-bold'>کاربران</a>
               </Link>
             </li>
           </ul>
         </div>
         <div className='overflow-x-auto md:col-span-3'>
-          <h1 className='mb-4 text-xl'>Users</h1>
-          {loadingDelete && <div>Deleting...</div>}
+          <h1 className='mb-4 text-xl'>کاربران</h1>
+          {loadingDelete && <div>درحال حذف ...</div>}
           {loading ? (
-            <div>Loading...</div>
+            <div>در حال بارگذاری...</div>
           ) : error ? (
             <div className='alert-error'>{error}</div>
           ) : (
@@ -100,11 +100,11 @@ function AdminUsersScreen() {
               <table className='min-w-full'>
                 <thead className='border-b'>
                   <tr>
-                    <th className='px-5 text-left'>ID</th>
-                    <th className='p-5 text-left'>NAME</th>
-                    <th className='p-5 text-left'>EMAIL</th>
-                    <th className='p-5 text-left'>ADMIN</th>
-                    <th className='p-5 text-left'>ACTIONS</th>
+                    <th className='px-5 text-right'>شماره</th>
+                    <th className='p-5 text-right'>نام کاربر</th>
+                    <th className='p-5 text-right'>پست الکترونیک</th>
+                    <th className='p-5 text-right'>ادمین</th>
+                    <th className='p-5 text-right'>اقدامات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -113,7 +113,7 @@ function AdminUsersScreen() {
                       <td className=' p-5 '>{user._id.substring(20, 24)}</td>
                       <td className=' p-5 '>{user.name}</td>
                       <td className=' p-5 '>{user.email}</td>
-                      <td className=' p-5 '>{user.isAdmin ? 'YES' : 'NO'}</td>
+                      <td className=' p-5 '>{user.isAdmin ? 'بله' : 'خیر'}</td>
                       <td className=' p-5 '>
                         <Link
                           href={`/admin/user/${user._id}`}
@@ -121,7 +121,7 @@ function AdminUsersScreen() {
                           legacyBehavior
                         >
                           <a type='button' className='default-button'>
-                            Edit
+                            ویرایش
                           </a>
                         </Link>
                         &nbsp;
@@ -130,7 +130,7 @@ function AdminUsersScreen() {
                           className='default-button'
                           onClick={() => deleteHandler(user._id)}
                         >
-                          Delete
+                          حذف
                         </button>
                       </td>
                     </tr>

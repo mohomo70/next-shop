@@ -6,7 +6,7 @@ import { getError } from '../utils/error'
 import axios from 'axios'
 import Layout from '../components/Layout'
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ dir }) {
   const { data: session } = useSession()
 
   const {
@@ -44,15 +44,15 @@ export default function ProfileScreen() {
   }
 
   return (
-    <Layout title='Profile'>
+    <Layout title='Profile' dir={dir}>
       <form
         className='mx-auto max-w-screen-md'
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className='mb-4 text-xl'>Update Profile</h1>
+        <h1 className='mb-4 text-xl'>بروزرسانی حساب کاربری</h1>
 
         <div className='mb-4'>
-          <label htmlFor='name'>Name</label>
+          <label htmlFor='name'>نام کاربر</label>
           <input
             type='text'
             className='w-full'
@@ -68,7 +68,7 @@ export default function ProfileScreen() {
         </div>
 
         <div className='mb-4'>
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'>پست الکترونیک</label>
           <input
             type='email'
             className='w-full'
@@ -87,7 +87,7 @@ export default function ProfileScreen() {
         </div>
 
         <div className='mb-4'>
-          <label htmlFor='password'>Password</label>
+          <label htmlFor='password'>رمز عبور</label>
           <input
             className='w-full'
             type='password'
@@ -102,7 +102,7 @@ export default function ProfileScreen() {
         </div>
 
         <div className='mb-4'>
-          <label htmlFor='confirmPassword'>Confirm Password</label>
+          <label htmlFor='confirmPassword'>تائید رمز عبور</label>
           <input
             className='w-full'
             type='password'
@@ -122,11 +122,11 @@ export default function ProfileScreen() {
           )}
           {errors.confirmPassword &&
             errors.confirmPassword.type === 'validate' && (
-              <div className='text-red-500 '>Password do not match</div>
+              <div className='text-red-500 '>رمز عبور یکسان نیست</div>
             )}
         </div>
         <div className='mb-4'>
-          <button className='primary-button'>Update Profile</button>
+          <button className='primary-button'>بروزرسانی حساب کاربری</button>
         </div>
       </form>
     </Layout>

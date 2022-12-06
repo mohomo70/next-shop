@@ -16,7 +16,7 @@ function reducer(state, action) {
       return state
   }
 }
-function OrderHistoryScreen() {
+function OrderHistoryScreen({ dir }) {
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
@@ -36,10 +36,10 @@ function OrderHistoryScreen() {
     fetchOrders()
   }, [])
   return (
-    <Layout title='Order History'>
-      <h1 className='mb-4 text-xl'>Order History</h1>
+    <Layout title='Order History' dir={dir}>
+      <h1 className='mb-4 text-xl'>تاریخچه سفارشات</h1>
       {loading ? (
-        <div>Loading...</div>
+        <div>در حال بارگذاری...</div>
       ) : error ? (
         <div className='alert-error'>{error}</div>
       ) : (
@@ -47,12 +47,12 @@ function OrderHistoryScreen() {
           <table className='min-w-full'>
             <thead className='border-b'>
               <tr>
-                <th className='px-5 text-left'>ID</th>
-                <th className='p-5 text-left'>DATE</th>
-                <th className='p-5 text-left'>TOTAL</th>
-                <th className='p-5 text-left'>PAID</th>
-                <th className='p-5 text-left'>DELIVERED</th>
-                <th className='p-5 text-left'>ACTION</th>
+                <th className='px-5 text-left'>شماره</th>
+                <th className='p-5 text-left'>تاریخ</th>
+                <th className='p-5 text-left'>مجموع</th>
+                <th className='p-5 text-left'>وضعیت پرداخت</th>
+                <th className='p-5 text-left'>وضعیت ارسال</th>
+                <th className='p-5 text-left'>اقدامات</th>
               </tr>
             </thead>
             <tbody>
@@ -73,7 +73,7 @@ function OrderHistoryScreen() {
                   </td>
                   <td className=' p-5 '>
                     <Link legacyBehavior href={`/order/${order._id}`} passHref>
-                      <a>Details</a>
+                      <a>جزئیات</a>
                     </Link>
                   </td>
                 </tr>

@@ -32,7 +32,7 @@ function reducer(state, action) {
       state
   }
 }
-export default function AdminProdcutsScreen() {
+export default function AdminProdcutsScreen({ dir }) {
   const router = useRouter()
   const [
     { loading, error, products, loadingCreate, successDelete, loadingDelete },
@@ -44,7 +44,7 @@ export default function AdminProdcutsScreen() {
   })
 
   const createHandler = async () => {
-    if (!window.confirm('Are you sure?')) {
+    if (!window.confirm('آیا اطمینان دارید؟')) {
       return
     }
     try {
@@ -93,40 +93,40 @@ export default function AdminProdcutsScreen() {
   }
 
   return (
-    <Layout title='Admin Products'>
+    <Layout title='Admin Products' dir={dir}>
       <div className='grid md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
             <li>
-              <Link href='/admin/dashboard'>Dashboard</Link>
+              <Link href='/admin/dashboard'>داشبورد</Link>
             </li>
             <li>
-              <Link href='/admin/orders'>Orders</Link>
+              <Link href='/admin/orders'>سفارشات</Link>
             </li>
             <li>
               <Link href='/admin/products' legacyBehavior>
-                <a className='font-bold'>Products</a>
+                <a className='font-bold'>محصولات</a>
               </Link>
             </li>
             <li>
-              <Link href='/admin/users'>Users</Link>
+              <Link href='/admin/users'>کاربران</Link>
             </li>
           </ul>
         </div>
         <div className='overflow-x-auto md:col-span-3'>
           <div className='flex justify-between'>
-            <h1 className='mb-4 text-xl'>Products</h1>
-            {loadingDelete && <div>Deleting item...</div>}
+            <h1 className='mb-4 text-xl'>محصولات</h1>
+            {loadingDelete && <div>در حال حذف محصول ...</div>}
             <button
               disabled={loadingCreate}
               onClick={createHandler}
               className='primary-button'
             >
-              {loadingCreate ? 'Loading' : 'Create'}
+              {loadingCreate ? 'در حال بارگذاری' : 'ساخت محصول جدید'}
             </button>
           </div>{' '}
           {loading ? (
-            <div>Loading...</div>
+            <div>درحال بارگذاری ...</div>
           ) : error ? (
             <div className='alert-error'>{error}</div>
           ) : (
@@ -134,13 +134,13 @@ export default function AdminProdcutsScreen() {
               <table className='min-w-full'>
                 <thead className='border-b'>
                   <tr>
-                    <th className='px-5 text-left'>ID</th>
-                    <th className='p-5 text-left'>NAME</th>
-                    <th className='p-5 text-left'>PRICE</th>
-                    <th className='p-5 text-left'>CATEGORY</th>
-                    <th className='p-5 text-left'>COUNT</th>
-                    <th className='p-5 text-left'>RATING</th>
-                    <th className='p-5 text-left'>ACTIONS</th>
+                    <th className='px-5 text-right'>شماره</th>
+                    <th className='p-5 text-right'>عنوان</th>
+                    <th className='p-5 text-right'>قیمت</th>
+                    <th className='p-5 text-right'>دسته‌بندی</th>
+                    <th className='p-5 text-right'>تعداد موجود</th>
+                    <th className='p-5 text-right'>رتبه بندی</th>
+                    <th className='p-5 text-right'>اقدامات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -153,14 +153,16 @@ export default function AdminProdcutsScreen() {
                       <td className=' p-5 '>{product.countInStock}</td>
                       <td className=' p-5 '>{product.rating}</td>
                       <td className=' p-5 '>
-                        <Link href={`/admin/product/${product._id}`}>Edit</Link>
+                        <Link href={`/admin/product/${product._id}`}>
+                          ویرایش
+                        </Link>
                         &nbsp;
                         <button
                           onClick={() => deleteHandler(product._id)}
                           className='default-button'
                           type='button'
                         >
-                          Delete
+                          حذف
                         </button>
                       </td>
                     </tr>

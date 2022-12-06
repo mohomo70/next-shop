@@ -7,9 +7,9 @@ import { getError } from '../utils/error'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 
-export default function LoginScreen() {
+export default function LoginScreen({ dir }) {
   const { data: session } = useSession()
-
+  console.log(dir)
   const router = useRouter()
   const { redirect } = router.query
 
@@ -39,14 +39,14 @@ export default function LoginScreen() {
     }
   }
   return (
-    <Layout title='login'>
+    <Layout title='login' dir={dir}>
       <form
         className='mx-auto max-w-screen-md'
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className='mb-4 text-xl'>Login</h1>
+        <h1 className='mb-4 text-xl'>ورود به حساب کاربری</h1>
         <div className='mb-4'>
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'>پست الکترونیک</label>
           <input
             type='email'
             {...register('email', {
@@ -65,7 +65,7 @@ export default function LoginScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='password'>Password</label>
+          <label htmlFor='password'>رمز عبور</label>
           <input
             type='password'
             {...register('password', {
@@ -81,11 +81,11 @@ export default function LoginScreen() {
           )}
         </div>
         <div className='mb-4 '>
-          <button className='primary-button'>Login</button>
+          <button className='primary-button'>ورود</button>
         </div>
         <div className='mb-4 '>
-          Don&apos;t have an account? &nbsp;
-          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
+          حساب کاربری ندارید؟ &nbsp;
+          <Link href={`/register?redirect=${redirect || '/'}`}>ثبت نام</Link>
         </div>
       </form>
     </Layout>

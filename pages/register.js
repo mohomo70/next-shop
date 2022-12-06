@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-export default function LoginScreen() {
+export default function LoginScreen({ dir }) {
   const { data: session } = useSession()
 
   const router = useRouter()
@@ -47,14 +47,14 @@ export default function LoginScreen() {
     }
   }
   return (
-    <Layout title='Create Account'>
+    <Layout title='Create Account' dir={dir}>
       <form
         className='mx-auto max-w-screen-md'
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className='mb-4 text-xl'>Create Account</h1>
+        <h1 className='mb-4 text-xl'>ساخت حساب کاربری</h1>
         <div className='mb-4'>
-          <label htmlFor='name'>Name</label>
+          <label htmlFor='name'> نام کاربری</label>
           <input
             type='text'
             className='w-full'
@@ -70,7 +70,7 @@ export default function LoginScreen() {
         </div>
 
         <div className='mb-4'>
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'>پست الکترونیک</label>
           <input
             type='email'
             {...register('email', {
@@ -88,7 +88,7 @@ export default function LoginScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='password'>Password</label>
+          <label htmlFor='password'>رمز عبور</label>
           <input
             type='password'
             {...register('password', {
@@ -104,7 +104,7 @@ export default function LoginScreen() {
           )}
         </div>
         <div className='mb-4'>
-          <label htmlFor='confirmPassword'>Confirm Password</label>
+          <label htmlFor='confirmPassword'>تایید رمز عبور</label>
           <input
             className='w-full'
             type='password'
@@ -125,16 +125,16 @@ export default function LoginScreen() {
           )}
           {errors.confirmPassword &&
             errors.confirmPassword.type === 'validate' && (
-              <div className='text-red-500 '>Password do not match</div>
+              <div className='text-red-500 '>رمز عبور یکسان نیست</div>
             )}
         </div>
 
         <div className='mb-4 '>
-          <button className='primary-button'>Register</button>
+          <button className='primary-button'>ثبت نام</button>
         </div>
         <div className='mb-4 '>
-          Don&apos;t have an account? &nbsp;
-          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
+          حساب کاربری دارید؟ &nbsp;
+          <Link href={`/login?redirect=${redirect || '/'}`}>ورود</Link>
         </div>
       </form>
     </Layout>
