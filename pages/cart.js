@@ -57,6 +57,7 @@ function CartScreen({ dir }) {
                             alt={item.name}
                             width={50}
                             height={50}
+                            className='rounded mx-2'
                           ></Image>
                           &nbsp;
                           {item.name}
@@ -77,7 +78,7 @@ function CartScreen({ dir }) {
                         ))}
                       </select>
                     </td>
-                    <td className='p-5 text-right'>${item.price}</td>
+                    <td className='p-5 text-right'>{item.price} ريال</td>
                     <td className='p-5 text-center'>
                       <button onClick={() => removeItemHandler(item)}>
                         <XCircleIcon className='h-5 w-5'></XCircleIcon>
@@ -88,12 +89,12 @@ function CartScreen({ dir }) {
               </tbody>
             </table>
           </div>
-          <div className='card p-5 mt-16'>
+          <div className='card p-5 mt-4'>
             <ul>
               <li>
                 <div className='pb-3 text-xl'>
-                  مجموع ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : ريال
-                  {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                  مجموع ({cartItems.reduce((a, c) => a + c.quantity, 0)}) :
+                  {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)} ريال
                 </div>
               </li>
               <li>

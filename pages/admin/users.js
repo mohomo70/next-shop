@@ -72,16 +72,16 @@ function AdminUsersScreen({ dir }) {
       <div className='grid md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/dashboard'>داشبورد</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/orders'>سفارشات</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/products'>محصولات</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/users' legacyBehavior>
                 <a className='font-bold'>کاربران</a>
               </Link>

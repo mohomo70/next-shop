@@ -61,7 +61,7 @@ export default function LoginScreen({ dir }) {
             id='name'
             autoFocus
             {...register('name', {
-              required: 'Please enter name',
+              required: 'لطفا نام را وارد کنید',
             })}
           />
           {errors.name && (
@@ -74,10 +74,10 @@ export default function LoginScreen({ dir }) {
           <input
             type='email'
             {...register('email', {
-              required: 'Please enter email',
+              required: 'لطفا پست الکترونیکی را وارد کنید',
               pattern: {
                 value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                message: 'Please enter valid email',
+                message: 'لطفا پست الکترونیکی را وارد کنید',
               },
             })}
             className='w-full'
@@ -92,8 +92,11 @@ export default function LoginScreen({ dir }) {
           <input
             type='password'
             {...register('password', {
-              required: 'Please enter password',
-              minLength: { value: 6, message: 'password is more than 5 chars' },
+              required: 'لطفا رمز عبور را وارد کنید',
+              minLength: {
+                value: 6,
+                message: 'رمز عبور باید بیش از 5 کاراکتر باشد',
+              },
             })}
             className='w-full'
             id='password'
@@ -110,11 +113,11 @@ export default function LoginScreen({ dir }) {
             type='password'
             id='confirmPassword'
             {...register('confirmPassword', {
-              required: 'Please enter confirm password',
+              required: 'لطفا رمز عبور را وارد کنید',
               validate: (value) => value === getValues('password'),
               minLength: {
                 value: 6,
-                message: 'confirm password is more than 5 chars',
+                message: 'رمز عبور باید بیش از 5 کاراکتر باشد',
               },
             })}
           />

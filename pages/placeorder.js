@@ -113,6 +113,7 @@ export default function PlaceOrderScreen({ dir }) {
                               alt={item.name}
                               width={50}
                               height={50}
+                              className={'rounded mx-2'}
                             ></Image>
                             &nbsp;
                             {item.name}
@@ -120,9 +121,9 @@ export default function PlaceOrderScreen({ dir }) {
                         </Link>
                       </td>
                       <td className=' p-5 text-right'>{item.quantity}</td>
-                      <td className='p-5 text-right'>${item.price}</td>
+                      <td className='p-5 text-right'>{item.price} ریال</td>
                       <td className='p-5 text-right'>
-                        ${item.quantity * item.price}
+                        {item.quantity * item.price} ریال
                       </td>
                     </tr>
                   ))}

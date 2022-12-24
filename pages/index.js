@@ -10,6 +10,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import Link from 'next/link'
 import { FormattedMessage } from 'react-intl'
+import LoadingItem from '../components/LoadingItem'
 
 export default function Home({ products, featuredProducts, dir }) {
   const { state, dispatch } = useContext(Store)
@@ -49,6 +50,7 @@ export default function Home({ products, featuredProducts, dir }) {
             key={product.slug}
             addToCartHandler={addToCartHandler}
           ></ProductItem>
+          // <LoadingItem key={product.slug} />
         ))}
       </div>
     </Layout>

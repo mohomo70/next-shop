@@ -18,7 +18,7 @@ export default function PaymentScreen({ dir }) {
   const submitHandler = (e) => {
     e.preventDefault()
     if (!selectedPaymentMethod) {
-      return toast.error('Payment method is required')
+      return toast.error('. انتخاب روش پرداخت التزامی است')
     }
     dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
     Cookies.set(

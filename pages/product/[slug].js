@@ -43,6 +43,7 @@ export default function ProductScreen(props) {
             width={640}
             height={640}
             layout='responsive'
+            className='border bg-slate-500 rounded-lg animate-glow-hand'
           ></Image>
         </div>
         <div>
@@ -52,9 +53,9 @@ export default function ProductScreen(props) {
             </li>
             <li>دسته بندی: {product.category}</li>
             <li>برند: {product.brand}</li>
-            <li>
+            {/* <li>
               {product.rating} of {product.numReviews} reviews
-            </li>
+            </li> */}
             <li>توضیحات: {product.description}</li>
           </ul>
         </div>
@@ -74,7 +75,7 @@ export default function ProductScreen(props) {
               className='primary-button w-full'
               onClick={addToCartHandler}
             >
-              اضافه کردن به سید خرید
+              اضافه کردن به سبد خرید
             </button>
           </div>
         </div>

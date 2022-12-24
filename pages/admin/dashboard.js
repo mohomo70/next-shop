@@ -74,23 +74,23 @@ function AdminDashboardScreen({ dir }) {
       <div className='grid  md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/dashboard' legacyBehavior>
                 <a className='font-bold'>داشبورد</a>
               </Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/orders'>سفارشات</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/products'>محصولات</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/users'>کاربران</Link>
             </li>
           </ul>
         </div>
-        <div className='md:col-span-3'>
+        <div className='md:col-span-3 col-span-1'>
           <h1 className='mb-4 text-xl'>داشبورد ادمین</h1>
           {loading ? (
             <div>درحال بارگذاری...</div>

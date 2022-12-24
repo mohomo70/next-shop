@@ -40,18 +40,18 @@ export default function AdminOrderScreen({ dir }) {
       <div className='grid md:grid-cols-4 md:gap-5'>
         <div>
           <ul>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/dashboard'>داشبورد</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/orders' legacyBehavior>
                 <a className='font-bold'>سفارشات</a>
               </Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/products'>محصولات</Link>
             </li>
-            <li>
+            <li className='mb-2'>
               <Link href='/admin/users'>کاربران</Link>
             </li>
           </ul>

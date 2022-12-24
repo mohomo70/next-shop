@@ -14,6 +14,7 @@ export default function CheckoutWizard({ activeStep = 0 }) {
                             ? 'border-indigo-500 text-indigo-500'
                             : 'border-gray-400 text-gray-400'
                         }
+                        mb-4
                     `}
           >
             {step}

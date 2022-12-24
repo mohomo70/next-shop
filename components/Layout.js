@@ -9,6 +9,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Store } from '../utils/Store'
 import DropdownLink from './DropdownLink'
 import { FormattedMessage, useIntl } from 'react-intl'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import Image from 'next/image'
 
 export default function Layout({ title, children, dir }) {
   const intl = useIntl()
@@ -38,10 +41,19 @@ export default function Layout({ title, children, dir }) {
 
       <div className='flex min-h-screen flex-col justify-between'>
         <header dir={dir}>
-          <nav className='flex h-12 items-center px-4 justify-between shadow-md'>
+          <nav className='flex h-20 items-center px-16 justify-between shadow-md  '>
             <Link legacyBehavior href='/'>
               <a className='text-lg font-bold'>
-                <FormattedMessage id='page.home.head.title' />
+                <div className='w-16 flex h-16 justify-center items-center'>
+                  <Image
+                    src='/images/fish-logo.jpg'
+                    className=''
+                    width={64}
+                    height={64}
+                    alt='logo'
+                  />
+                  <FormattedMessage id='page.home.head.title' />
+                </div>
               </a>
             </Link>
             {/* <div>
@@ -54,7 +66,7 @@ export default function Layout({ title, children, dir }) {
             <div>
               <Link legacyBehavior href='/cart'>
                 <a className='p-2'>
-                  سبد خرید
+                  <ShoppingCartOutlinedIcon />
                   {cartItemsCount > 0 && (
                     <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
                       {cartItemsCount}
@@ -69,7 +81,7 @@ export default function Layout({ title, children, dir }) {
                   <Menu.Button className='text-blue-600'>
                     {session.user.name}
                   </Menu.Button>
-                  <Menu.Items className='absolute left-0 w-48 origin-top-left bg-white  shadow-lg '>
+                  <Menu.Items className='absolute left-0 w-48 origin-top-left bg-white  shadow-lg z-10 border-2 rounded-2xl'>
                     <Menu.Item>
                       <DropdownLink className='dropdown-link' href='/profile'>
                         مشخصات کاربری
@@ -106,7 +118,9 @@ export default function Layout({ title, children, dir }) {
                 </Menu>
               ) : (
                 <Link legacyBehavior href='/login'>
-                  <a className='p-2'>ورود</a>
+                  <a className='p-2'>
+                    <AccountCircleOutlinedIcon />
+                  </a>
                 </Link>
               )}
             </div>
@@ -115,8 +129,24 @@ export default function Layout({ title, children, dir }) {
         <main className='container m-auto mt-4 px-4' dir={dir}>
           {children}
         </main>
-        <footer className='flex h-10 justify-center items-center shadow-inner'>
-          <p>کپی رایت @ 1401</p>
+        <footer className='shadow-inner px-8' dir={dir}>
+          <div className='sm:flex justify-between items-center'>
+            <div className='w-16 flex h-20  items-center'>
+              <Image
+                src='/images/fish-logo.jpg'
+                className=''
+                width={64}
+                height={64}
+                alt='logo'
+              />
+              <FormattedMessage id='page.home.head.title' />
+            </div>
+            <div>فروشگاه اسم عرضه کننده انواع ماهی‌های آکواریومی </div>
+          </div>
+          <div className='border-2' />
+          <div className='flex justify-center items-center h-12'>
+            کپی‌رایت@2021
+          </div>
         </footer>
       </div>
     </>
