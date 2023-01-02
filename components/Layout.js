@@ -11,6 +11,7 @@ import DropdownLink from './DropdownLink'
 import { FormattedMessage, useIntl } from 'react-intl'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+import SearchIcon from '@mui/icons-material/Search'
 import Image from 'next/image'
 
 export default function Layout({ title, children, dir }) {
@@ -19,7 +20,6 @@ export default function Layout({ title, children, dir }) {
   const { state, dispatch } = useContext(Store)
   const { cart } = state
   const [cartItemsCount, setCartItemsCount] = useState(0)
-  console.log(dir)
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
   }, [cart.cartItems])
@@ -39,20 +39,28 @@ export default function Layout({ title, children, dir }) {
 
       <ToastContainer position='bottom-center' limit={1} />
 
-      <div className='flex min-h-screen flex-col justify-between'>
-        <header dir={dir}>
-          <nav className='flex h-20 items-center px-16 justify-between shadow-md  '>
+      <div className='flex min-h-screen flex-col justify-between md:px-48 bg-[url("/images/background.png")] bg-yellow-100 bg-center bg-cover'>
+        <header dir={dir} className='sticky top-0 z-10'>
+          <nav className='flex h-20 items-center  justify-between shadow-md bg-cyan-200 px-2 md:px-16'>
+            <div className='flex flex-col items-center '>
+              <Link legacyBehavior href='/search'>
+                <a className='p-2'>
+                  <SearchIcon style={{ color: 'white' }} />
+                </a>
+              </Link>
+              <div className='text-sm text-white font-medium'>جست‌وجو</div>
+            </div>
             <Link legacyBehavior href='/'>
               <a className='text-lg font-bold'>
                 <div className='w-16 flex h-16 justify-center items-center'>
                   <Image
                     src='/images/fish-logo.jpg'
-                    className=''
-                    width={64}
-                    height={64}
+                    width={56}
+                    height={56}
                     alt='logo'
+                    className='rounded-full'
                   />
-                  <FormattedMessage id='page.home.head.title' />
+                  {/* <FormattedMessage id='page.home.head.title' /> */}
                 </div>
               </a>
             </Link>
@@ -63,17 +71,20 @@ export default function Layout({ title, children, dir }) {
                 </Link>
               ))}
             </div> */}
-            <div>
-              <Link legacyBehavior href='/cart'>
-                <a className='p-2'>
-                  <ShoppingCartOutlinedIcon />
-                  {cartItemsCount > 0 && (
-                    <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
-                      {cartItemsCount}
-                    </span>
-                  )}
-                </a>
-              </Link>
+            <div className='flex'>
+              <div className='flex flex-col items-center'>
+                <Link legacyBehavior href='/cart'>
+                  <a className='p-2'>
+                    <ShoppingCartOutlinedIcon style={{ color: 'white' }} />
+                    {cartItemsCount > 0 && (
+                      <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                        {cartItemsCount}
+                      </span>
+                    )}
+                  </a>
+                </Link>
+                <div className='text-sm text-white font-medium'>سبد خرید</div>
+              </div>
               {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
@@ -117,31 +128,37 @@ export default function Layout({ title, children, dir }) {
                   </Menu.Items>
                 </Menu>
               ) : (
-                <Link legacyBehavior href='/login'>
-                  <a className='p-2'>
-                    <AccountCircleOutlinedIcon />
-                  </a>
-                </Link>
+                <div className='flex flex-col items-center'>
+                  <Link legacyBehavior href='/login'>
+                    <a className='p-2'>
+                      <AccountCircleOutlinedIcon style={{ color: 'white' }} />
+                    </a>
+                  </Link>
+                  <div className='text-sm text-white font-medium'>ورود</div>
+                </div>
               )}
             </div>
           </nav>
         </header>
-        <main className='container m-auto mt-4 px-4' dir={dir}>
+        <main
+          className='flex items-center xs:mx-auto justify-between'
+          dir={dir}
+        >
           {children}
         </main>
-        <footer className='shadow-inner px-8' dir={dir}>
-          <div className='sm:flex justify-between items-center'>
-            <div className='w-16 flex h-20  items-center'>
+        <footer className='shadow-inner px-8 bg-cyan-200' dir={dir}>
+          <div className='flex justify-between items-center'>
+            <div className='w-16 flex h-20  items-center grow'>
               <Image
                 src='/images/fish-logo.jpg'
-                className=''
-                width={64}
-                height={64}
+                width={56}
+                height={56}
                 alt='logo'
+                className='rounded-full'
               />
-              <FormattedMessage id='page.home.head.title' />
+              {/* <FormattedMessage id='page.home.head.title' /> */}
             </div>
-            <div>فروشگاه اسم عرضه کننده انواع ماهی‌های آکواریومی </div>
+            <div>عرضه کننده انواع ماهی‌های آکواریومی </div>
           </div>
           <div className='border-2' />
           <div className='flex justify-center items-center h-12'>

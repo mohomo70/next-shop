@@ -29,7 +29,7 @@ a {
 }
 
 .card {
-  @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+  @apply block rounded-lg border border-gray-200 shadow-md bg-white;
 }
 
 .primary-button {
