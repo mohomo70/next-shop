@@ -32,35 +32,39 @@ export default function ProductScreen(props) {
 
   return (
     <Layout title={product.name} dir={dir}>
-      <div className='py-2'>
-        <Link href='/'>بازگشت به محصولات</Link>
-      </div>
-      <div className='grid md:grid-cols-4 md:gap-3'>
-        <div className='md:col-span-2'>
+      <div
+        className='grid md:grid-cols-5 gap-4 md:gap-8 bg-gradient-to-l from-fuchsia-100 via-purple-100 to-white py-8 md:py-24  px-8 grow'
+        style={{ height: '78vh' }}
+      >
+        <div className='md:col-span-3'>
           <Image
             src={product.image}
             alt={product.name}
-            width={640}
-            height={640}
+            width={320}
+            height={320}
             layout='responsive'
-            className='border bg-slate-500 rounded-lg animate-glow-hand'
+            className='border bg-slate-500 rounded-lg '
           ></Image>
         </div>
-        <div>
+        <div className='md:col-span-2'>
           <ul>
-            <li>
-              <h1 className='text-lg'>{product.name}</h1>
-            </li>
-            <li>دسته بندی: {product.category}</li>
-            <li>برند: {product.brand}</li>
+            <div className='flex justify-center mb-4'>
+              <div className='text-2xl font-bold'>{product.name}</div>
+            </div>
+            <div className='mb-2 flex justify-between'>
+              <div>دسته بندی: </div>
+              <div>{product.category} </div>{' '}
+            </div>
+            <div className='mb-2 flex justify-between'>
+              <div> برند: </div>
+              <div>{product.brand}</div>
+            </div>
             {/* <li>
               {product.rating} of {product.numReviews} reviews
             </li> */}
-            <li>توضیحات: {product.description}</li>
-          </ul>
-        </div>
-        <div>
-          <div className='card p-5'>
+            <div className='mb-2 flex justify-between'>
+              <div> توضیحات :</div> <div>{product.description}</div>
+            </div>
             <div className='mb-2 flex justify-between'>
               <div>قیمت</div>
               <div>{product.price}ريال</div>
@@ -77,7 +81,7 @@ export default function ProductScreen(props) {
             >
               اضافه کردن به سبد خرید
             </button>
-          </div>
+          </ul>
         </div>
       </div>
     </Layout>

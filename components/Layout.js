@@ -41,7 +41,7 @@ export default function Layout({ title, children, dir }) {
 
       <div className='flex min-h-screen flex-col justify-between md:px-48 bg-[url("/images/background.png")] bg-yellow-100 bg-center bg-cover'>
         <header dir={dir} className='sticky top-0 z-10'>
-          <nav className='flex h-20 items-center  justify-between shadow-md bg-cyan-200 px-2 md:px-16'>
+          <nav className='flex h-20 items-center  justify-between shadow-md bg-cyan-300 px-2 md:px-16'>
             <div className='flex flex-col items-center '>
               <Link legacyBehavior href='/search'>
                 <a className='p-2'>
@@ -77,7 +77,7 @@ export default function Layout({ title, children, dir }) {
                   <a className='p-2'>
                     <ShoppingCartOutlinedIcon style={{ color: 'white' }} />
                     {cartItemsCount > 0 && (
-                      <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                      <span className='ml-1 rounded-full bg-amber-300 px-2 pt-1 text-xs font-bold text-white'>
                         {cartItemsCount}
                       </span>
                     )}
@@ -89,8 +89,15 @@ export default function Layout({ title, children, dir }) {
                 'Loading'
               ) : session?.user ? (
                 <Menu as='div' className='relative inline-block'>
-                  <Menu.Button className='text-blue-600'>
-                    {session.user.name}
+                  <Menu.Button className='text-blue-600 '>
+                    {/* <div className='mt-4'>{session.user.name}</div> */}
+                    <Image
+                      src='/images/profile.png'
+                      alt='icon'
+                      width={40}
+                      height={40}
+                    />
+                    <div className=''></div>
                   </Menu.Button>
                   <Menu.Items className='absolute left-0 w-48 origin-top-left bg-white  shadow-lg z-10 border-2 rounded-2xl'>
                     <Menu.Item>
@@ -140,13 +147,10 @@ export default function Layout({ title, children, dir }) {
             </div>
           </nav>
         </header>
-        <main
-          className='flex items-center xs:mx-auto justify-between'
-          dir={dir}
-        >
+        <main className='flex flex-col  xs:mx-auto justify-between' dir={dir}>
           {children}
         </main>
-        <footer className='shadow-inner px-8 bg-cyan-200' dir={dir}>
+        <footer className='shadow-inner px-2 md:px-8 bg-cyan-300' dir={dir}>
           <div className='flex justify-between items-center'>
             <div className='w-16 flex h-20  items-center grow'>
               <Image
@@ -158,10 +162,12 @@ export default function Layout({ title, children, dir }) {
               />
               {/* <FormattedMessage id='page.home.head.title' /> */}
             </div>
-            <div>عرضه کننده انواع ماهی‌های آکواریومی </div>
+            <div className='text-slate-600'>
+              عرضه کننده انواع ماهی‌های آکواریومی{' '}
+            </div>
           </div>
           <div className='border-2' />
-          <div className='flex justify-center items-center h-12'>
+          <div className='flex justify-center items-center h-12 text-slate-600'>
             کپی‌رایت@2021
           </div>
         </footer>

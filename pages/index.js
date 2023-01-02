@@ -57,7 +57,7 @@ export default function Home({ products, featuredProducts, dir }) {
           <Menu
             as='div'
             className={`relative inline-block px-8 md:pl-8 md:pr-0 col-span-4 md:col-span-1  ${
-              toggle === true ? 'mb-32' : ''
+              toggle === true ? 'mb-36' : ''
             }`}
           >
             <div className='flex space-between'>
