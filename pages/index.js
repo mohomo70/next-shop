@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 
 export default function Home({ products, featuredProducts, dir }) {
+  const [category, setCategory] = useState('گلدفیش')
   const [toggle, setToggle] = useState(false)
   const { state, dispatch } = useContext(Store)
   const { cart } = state
@@ -51,7 +52,7 @@ export default function Home({ products, featuredProducts, dir }) {
       {/* bg-[url("/images/dot.png")] */}
       <div>
         <div className='h-[128px]  bg-gradient-to-r from-indigo-100 to-sky-300  bg-no-repeat bg-right flex items-center justify-center md:px-32'>
-          <div className='text-white text-4xl'>انواع نژاد‌های گلدفیش </div>
+          <div className='text-white text-4xl'>انواع نژاد‌های {category} </div>
         </div>
         <div className='grid grid-cols-5 bg-blue-50 px-1 pt-1 md:px-16 md:pt-20 pb-8'>
           <Menu
@@ -80,22 +81,22 @@ export default function Home({ products, featuredProducts, dir }) {
               className='absolute right-12 md:-right-6 w-32 origin-top-right mt-4 border-0 rounded-2xl'
               onClick={() => setToggle(!toggle)}
             >
-              <Menu.Item className='py-1 px-2 bg-yellow-200 rounded-md'>
+              <Menu.Item className={`py-1 px-2 ${category=='گلدفیش'?'bg-yellow-200 rounded-md':''}`} onClick={()=>setCategory('گلدفیش')}>
                 <div>گلدفیش</div>
               </Menu.Item>
-              <Menu.Item className='pb-1'>
+              <Menu.Item className={`pb-1 ${category=='گوپی'?'bg-yellow-200 rounded-md':''}`} onClick={()=>setCategory('گوپی')}>
                 <div>گوپی</div>
               </Menu.Item>
-              <Menu.Item>
-                <div className='pb-1'>پلاتی</div>
+              <Menu.Item onClick={()=>setCategory('پلاتی')}>
+                <div className={`pb-1 ${category=='پلاتی'?'bg-yellow-200 rounded-md':''}`}>پلاتی</div >
               </Menu.Item>
-              <Menu.Item>
+              <Menu.Item className={category=='فایتر'?'bg-yellow-200 rounded-md':''} onClick={()=>setCategory('فایتر')}>
                 <div>فایتر</div>
               </Menu.Item>
             </Menu.Items>
           </Menu>
           <div className='col-span-5 md:col-span-4 grid grid-cols-2 gap-1 gap-y-1 md:grid-cols-3 '>
-            {products.map((product) => (
+            {products.filter(x=>x.category===category).map((product) => (
               <ProductItem
                 product={product}
                 key={product.slug}
